@@ -88,6 +88,7 @@ def fetchBlog(blogId):
         token = request.headers.get('Authorization').split(' ')[1]
         userId = decode_token(token)['id']
         cursor = mysql.connection.cursor()
+        cursor.execute('''delete from comments where blog_id=%s''', (blogId,))
         cursor.execute('''delete from blogs where id=%s and user_id=%s''', (blogId, userId,))
         mysql.connection.commit()
         cursor.close()
