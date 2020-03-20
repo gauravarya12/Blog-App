@@ -32,7 +32,7 @@ class BlogCard extends React.Component {
       }
     }).then(res => {
       if (!res.data.error) {
-        this.props.history.replace('/')
+        this.props.handleUpdate()
       }
     })
   }

@@ -38,31 +38,31 @@ class Myblogs extends React.Component {
   componentDidUpdate (prevProps, prevState) {
     if (this.state.update !== prevState.update) {
       const token = localStorage.getItem('token')
-    axios({
-      method: 'get',
-      url: 'http://127.0.0.1:5000/blogs/user',
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    }).then(res => {
-      if (!res.data.error) {
-        this.setState({
-          blogs: res.data.data
-        }, () => {
-          if (this.state.blogs.length === 0) {
-            this.setState({
-              message: 'You have not posted any blogs.'
-            })
-          }
-        })
-      }
-    }).catch(err => this.setState({ message: err.message }))
+      axios({
+        method: 'get',
+        url: 'http://127.0.0.1:5000/blogs/user',
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }).then(res => {
+        if (!res.data.error) {
+          this.setState({
+            blogs: res.data.data
+          }, () => {
+            if (this.state.blogs.length === 0) {
+              this.setState({
+                message: 'You have not posted any blogs.'
+              })
+            }
+          })
+        }
+      }).catch(err => this.setState({ message: err.message }))
     }
   }
 
 
   handleUpdate = () => {
-    this.setState(state => {this.setState({update: !state.update})})
+    this.setState(state => ({update: !state.update}))
   }
 
   render () {
