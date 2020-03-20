@@ -40,7 +40,7 @@ class Signup extends React.Component {
     render () {
         return (
             <div className='container mx-auto mt-5 justify-content-center d-flex'>
-                <form className='col-6' onSubmit={this.handleSubmit}>
+                <form className='col-lg-6 col-md-8 col-sm-11 col-11' onSubmit={this.handleSubmit}>
                     <label htmlFor='name'>Name</label>
                     <input type='text' className='form-control' id='name' onChange={this.handleChange} value={this.state.name} required></input>
                     <label htmlFor='email'>Email</label>

@@ -42,7 +42,7 @@ class Login extends React.Component {
     render () {
         return (
             <div className='container mx-auto mt-5 justify-content-center d-flex'>
-                <form className='col-6' onSubmit={this.handleSubmit}>
+                <form className='col-lg-6 col-md-8 col-sm-11 col-11' onSubmit={this.handleSubmit}>
                     <label htmlFor='email'>Email</label>
                     <input type='email' className='form-control' id='email' onChange={this.handleChange} value={this.state.email} required></input>
                     <label htmlFor='password'>Password</label>

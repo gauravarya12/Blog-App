@@ -22,9 +22,24 @@ class BlogCard extends React.Component {
     })
   }
 
+  handleDelete = () => {
+    const token = localStorage.getItem('token')
+    axios({
+      method: 'delete',
+      url: 'http://127.0.0.1:5000/blogs/' + this.props.obj.id,
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }).then(res => {
+      if (!res.data.error) {
+        this.props.history.replace('/')
+      }
+    })
+  }
+
   render () {
     return (
-      <div className='card col-lg-5 col-md-8 col-11 p-0 shadow' style={{ height: '300px' }}>
+      <div className='card col-lg-5 col-md-8 col-11 p-0 shadow mt-2' style={{ height: '300px' }}>
         <div className='card-header text-center bg-dark' style={{ height: '70px' }}>
           <Link to={`/view/${this.props.obj.id}`} className='text-decoration-none'><h5 className='text-white'>{this.props.obj.title}</h5></Link>
         </div>
@@ -40,7 +55,7 @@ class BlogCard extends React.Component {
           <div className='card-footer bg-dark d-flex justify-content-center' style={{ height: '70px' }}>
             <Link to={`/myblogs/${this.props.obj.id}`}><button className='btn btn-dark'>View Blog</button></Link>
             <Link to={`/editblog/${this.props.obj.id}`}><button className='btn btn-dark'>Edit Blog</button></Link>
-            <button className='btn btn-dark'>Delete Blog</button>
+            <button className='btn btn-dark' onClick={this.handleDelete}>Delete Blog</button>
           </div>
         )}
       </div>
